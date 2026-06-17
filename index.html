@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle de Estações de Notebooks</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       TELA INICIAL
+  ══════════════════════════════════════════ -->
+  <div id="screen-home" class="screen active">
+    <header class="home-header">
+      <div class="home-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="10" width="40" height="26" rx="3" stroke="#1A56DB" stroke-width="2.5" fill="none"/>
+          <rect x="8" y="14" width="32" height="18" rx="1.5" fill="#EFF6FF"/>
+          <line x1="14" y1="36" x2="34" y2="36" stroke="#1A56DB" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="20" y1="36" x2="28" y2="38" stroke="#1A56DB" stroke-width="2"/>
+          <line x1="14" y1="38" x2="34" y2="38" stroke="#1A56DB" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1>Estações de Notebooks</h1>
+      <p class="home-sub">Selecione seu perfil para continuar</p>
+    </header>
+
+    <main class="home-cards">
+      <button class="role-card" onclick="goTo('screen-professor')">
+        <div class="role-icon role-icon--blue">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <div class="role-text">
+          <span class="role-title">Professor</span>
+          <span class="role-desc">Retirar ou devolver uma estação</span>
+        </div>
+        <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+
+      <button class="role-card" onclick="goTo('screen-gestor')">
+        <div class="role-icon role-icon--green">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <div class="role-text">
+          <span class="role-title">Gestor</span>
+          <span class="role-desc">Painel de controle e histórico</span>
+        </div>
+        <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </main>
+
+    <footer class="home-footer">
+      <div id="home-status-bar">
+        <!-- preenchido via JS -->
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TELA DO PROFESSOR
+  ══════════════════════════════════════════ -->
+  <div id="screen-professor" class="screen">
+    <div class="topbar">
+      <button class="back-btn" onclick="goTo('screen-home')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Início
+      </button>
+      <h2 class="topbar-title">Área do Professor</h2>
+    </div>
+
+    <div class="content">
+      <section class="form-section">
+        <h3 class="section-label">Seus dados</h3>
+        <div class="card">
+          <div class="field">
+            <label for="prof-nome">Nome completo</label>
+            <input type="text" id="prof-nome" placeholder="Ex: Maria Silva" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="prof-sala">Turma / Sala</label>
+            <input type="text" id="prof-sala" placeholder="Ex: 9º A" />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="section-label">Escolha a estação</h3>
+        <div id="estacoes-professor" class="estacoes-grid">
+          <!-- gerado via JS -->
+        </div>
+      </section>
+
+      <div id="acao-professor" class="acao-box" style="display:none;">
+        <div id="acao-info" class="acao-info"></div>
+        <button id="btn-retirar" class="btn btn--retirar" onclick="registrarRetirada()" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Confirmar retirada
+        </button>
+        <button id="btn-devolver" class="btn btn--devolver" onclick="registrarDevolucao()" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Confirmar devolução
+        </button>
+      </div>
+
+      <div id="msg-professor" class="msg" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TELA DO GESTOR
+  ══════════════════════════════════════════ -->
+  <div id="screen-gestor" class="screen">
+    <div class="topbar">
+      <button class="back-btn" onclick="goTo('screen-home')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Início
+      </button>
+      <h2 class="topbar-title">Painel do Gestor</h2>
+    </div>
+
+    <div class="content">
+      <!-- métricas -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-num" id="met-total">3</span>
+          <span class="metric-label">Estações</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-num metric-num--green" id="met-livre">0</span>
+          <span class="metric-label">Livres</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-num metric-num--red" id="met-emp">0</span>
+          <span class="metric-label">Em uso</span>
+        </div>
+      </div>
+
+      <!-- tabs -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" onclick="switchTab('visao-geral', this)">Visão geral</button>
+        <button class="tab" role="tab" onclick="switchTab('historico', this)">Histórico</button>
+        <button class="tab" role="tab" onclick="switchTab('config', this)">Configurar</button>
+      </div>
+
+      <!-- TAB: visão geral -->
+      <div id="tab-visao-geral" class="tab-panel">
+        <div id="lista-gestor" class="card">
+          <!-- gerado via JS -->
+        </div>
+      </div>
+
+      <!-- TAB: histórico -->
+      <div id="tab-historico" class="tab-panel" style="display:none;">
+        <div id="lista-historico" class="card">
+          <p class="empty-msg">Nenhuma movimentação ainda.</p>
+        </div>
+        <button class="btn btn--danger" onclick="limparHistorico()" style="margin-top:12px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          Limpar histórico
+        </button>
+      </div>
+
+      <!-- TAB: configurar -->
+      <div id="tab-config" class="tab-panel" style="display:none;">
+        <h3 class="section-label">Estações cadastradas</h3>
+        <div id="lista-config" class="estacoes-config">
+          <!-- gerado via JS -->
+        </div>
+
+        <h3 class="section-label" style="margin-top:1.5rem;">Devolver forçado</h3>
+        <div class="card">
+          <p style="font-size:13px;color:#6B7280;margin-bottom:12px;">Use caso o professor esqueça de devolver.</p>
+          <div id="lista-devolucao-forcada">
+            <!-- gerado via JS -->
+          </div>
+        </div>
+        <div id="msg-config" class="msg" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
