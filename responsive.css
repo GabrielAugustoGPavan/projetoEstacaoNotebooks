@@ -1,0 +1,87 @@
+/* ═══════════════════════════════════════════
+   RESPONSIVO
+═══════════════════════════════════════════ */
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .dashboard-row { grid-template-columns: 1fr; }
+  .dash-card--wide { grid-column: 1; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 240px;
+  }
+
+  /* Sidebar escondida por padrão no mobile */
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Topbar ocupa tela cheia */
+  .topbar {
+    left: 0;
+  }
+  .topbar__menu { display: flex; }
+
+  /* Main sem margem */
+  .main { margin-left: 0; }
+
+  /* Screens com menos padding */
+  .app-screen { padding: var(--space-4); }
+
+  /* Screen header empilhado */
+  .screen-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* KPIs em 2 colunas */
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .kpi-card__value { font-size: var(--text-2xl); }
+
+  /* Form rows empilhados */
+  .form-row { flex-direction: column; }
+
+  /* Modal full-screen */
+  .modal-overlay { padding: var(--space-3); align-items: flex-end; }
+  .modal { border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 92vh; }
+
+  /* Toast menor */
+  .toast-container { right: var(--space-3); bottom: var(--space-3); left: var(--space-3); }
+  .toast { max-width: 100%; }
+
+  /* Estações cards */
+  .estacoes-cards-grid { grid-template-columns: 1fr; }
+  .estacoes-status-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Toolbar empilhada */
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar__search { min-width: unset; }
+  .toolbar__filters { flex-wrap: wrap; }
+  .toolbar__filters select { flex: 1; min-width: 130px; }
+
+  /* Topbar clock escondido */
+  .topbar__clock { display: none; }
+
+  /* Config grid */
+  .config-grid { grid-template-columns: 1fr; }
+  .relatorios-grid { grid-template-columns: 1fr; }
+
+  /* Login */
+  .login-card { padding: var(--space-6) var(--space-5); }
+
+  /* Screen title menor */
+  .screen-title { font-size: var(--text-xl); }
+}
+
+/* ── Mobile pequeno (≤ 480px) ── */
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .estacoes-status-grid { grid-template-columns: repeat(2, 1fr); }
+  .screen-header__actions .btn span { display: none; }
+  .screen-header__actions .btn { padding: 9px 10px; }
+}

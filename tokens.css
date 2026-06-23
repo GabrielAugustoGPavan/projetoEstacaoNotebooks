@@ -1,0 +1,148 @@
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS — EduTrack
+   Paleta: Azul institucional + cinzas neutros
+   Assinatura: sidebar com gradiente sutil + 
+   cards com borda-esquerda colorida
+═══════════════════════════════════════════ */
+
+:root {
+  /* Brand — Azul educacional */
+  --brand-50:  #EFF6FF;
+  --brand-100: #DBEAFE;
+  --brand-200: #BFDBFE;
+  --brand-300: #93C5FD;
+  --brand-400: #60A5FA;
+  --brand-500: #3B82F6;
+  --brand-600: #2563EB;
+  --brand-700: #1D4ED8;
+  --brand-800: #1E40AF;
+  --brand-900: #1E3A8A;
+
+  /* Semânticas */
+  --success-50:  #F0FDF4;
+  --success-100: #DCFCE7;
+  --success-500: #22C55E;
+  --success-600: #16A34A;
+  --success-700: #15803D;
+
+  --warning-50:  #FFFBEB;
+  --warning-100: #FEF3C7;
+  --warning-500: #F59E0B;
+  --warning-600: #D97706;
+  --warning-700: #B45309;
+
+  --danger-50:  #FEF2F2;
+  --danger-100: #FEE2E2;
+  --danger-500: #EF4444;
+  --danger-600: #DC2626;
+  --danger-700: #B91C1C;
+
+  --info-50:  #F0F9FF;
+  --info-100: #E0F2FE;
+  --info-500: #0EA5E9;
+  --info-600: #0284C7;
+
+  /* Tipografia */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Escala de tipo */
+  --text-xs:   0.72rem;
+  --text-sm:   0.82rem;
+  --text-base: 0.92rem;
+  --text-md:   1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+
+  /* Raios */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Sombras */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.05);
+  --shadow-xl: 0 20px 50px rgba(0,0,0,0.12);
+
+  /* Transições */
+  --transition-fast: 0.12s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.35s ease;
+
+  /* Espaçamentos base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Layout */
+  --sidebar-w: 240px;
+  --topbar-h: 56px;
+}
+
+/* ══════════════════════ TEMA CLARO ══════════════════════ */
+[data-theme="light"] {
+  --bg-base:       #F0F4F8;
+  --bg-surface:    #FFFFFF;
+  --bg-surface-2:  #F8FAFC;
+  --bg-sidebar:    #0F172A;
+  --bg-sidebar-2:  #1E293B;
+
+  --text-primary:   #0F172A;
+  --text-secondary: #475569;
+  --text-muted:     #94A3B8;
+  --text-inverse:   #FFFFFF;
+  --text-sidebar:   #CBD5E1;
+  --text-sidebar-active: #FFFFFF;
+
+  --border-base:    #E2E8F0;
+  --border-strong:  #CBD5E1;
+  --border-subtle:  #F1F5F9;
+
+  --input-bg:       #FFFFFF;
+  --input-border:   #CBD5E1;
+  --input-focus:    var(--brand-500);
+}
+
+/* ══════════════════════ TEMA ESCURO ══════════════════════ */
+[data-theme="dark"] {
+  --bg-base:       #0D1117;
+  --bg-surface:    #161B22;
+  --bg-surface-2:  #1C2128;
+  --bg-sidebar:    #090D13;
+  --bg-sidebar-2:  #111720;
+
+  --text-primary:   #E6EDF3;
+  --text-secondary: #8B949E;
+  --text-muted:     #484F58;
+  --text-inverse:   #0D1117;
+  --text-sidebar:   #8B949E;
+  --text-sidebar-active: #E6EDF3;
+
+  --border-base:    #30363D;
+  --border-strong:  #484F58;
+  --border-subtle:  #21262D;
+
+  --input-bg:       #0D1117;
+  --input-border:   #30363D;
+  --input-focus:    var(--brand-400);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background: var(--bg-base);
+}

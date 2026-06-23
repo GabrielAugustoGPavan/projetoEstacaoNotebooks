@@ -3,192 +3,818 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Controle de Estações de Notebooks</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>EduTrack — Estação Notebooks</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
-<body>
+<body data-theme="light">
 
-  <!-- ══════════════════════════════════════════
-       TELA INICIAL
-  ══════════════════════════════════════════ -->
-  <div id="screen-home" class="screen active">
-    <header class="home-header">
-      <div class="home-icon">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="10" width="40" height="26" rx="3" stroke="#1A56DB" stroke-width="2.5" fill="none"/>
-          <rect x="8" y="14" width="32" height="18" rx="1.5" fill="#EFF6FF"/>
-          <line x1="14" y1="36" x2="34" y2="36" stroke="#1A56DB" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="20" y1="36" x2="28" y2="38" stroke="#1A56DB" stroke-width="2"/>
-          <line x1="14" y1="38" x2="34" y2="38" stroke="#1A56DB" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- ╔══════════════════════════════════════╗
+       ║  SIDEBAR (visível após login)        ║
+       ╚══════════════════════════════════════╝ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <div class="brand-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="2" y="6" width="24" height="16" rx="2" fill="var(--brand-500)"/>
+          <rect x="5" y="9" width="18" height="10" rx="1" fill="var(--brand-100)"/>
+          <rect x="8" y="22" width="12" height="2" rx="1" fill="var(--brand-400)"/>
+          <circle cx="14" cy="14" r="2.5" fill="var(--brand-500)"/>
         </svg>
       </div>
-      <h1>Estações de Notebooks</h1>
-      <p class="home-sub">Selecione seu perfil para continuar</p>
-    </header>
-
-    <main class="home-cards">
-      <button class="role-card" onclick="goTo('screen-professor')">
-        <div class="role-icon role-icon--blue">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-          </svg>
-        </div>
-        <div class="role-text">
-          <span class="role-title">Professor</span>
-          <span class="role-desc">Retirar ou devolver uma estação</span>
-        </div>
-        <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </button>
-
-      <button class="role-card" onclick="goTo('screen-gestor')">
-        <div class="role-icon role-icon--green">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-          </svg>
-        </div>
-        <div class="role-text">
-          <span class="role-title">Gestor</span>
-          <span class="role-desc">Painel de controle e histórico</span>
-        </div>
-        <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </button>
-    </main>
-
-    <footer class="home-footer">
-      <div id="home-status-bar">
-        <!-- preenchido via JS -->
+      <div class="brand-text">
+        <span class="brand-name">EduTrack</span>
+        <span class="brand-sub">Estação Notebooks</span>
       </div>
-    </footer>
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       TELA DO PROFESSOR
-  ══════════════════════════════════════════ -->
-  <div id="screen-professor" class="screen">
-    <div class="topbar">
-      <button class="back-btn" onclick="goTo('screen-home')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Início
-      </button>
-      <h2 class="topbar-title">Área do Professor</h2>
     </div>
 
-    <div class="content">
-      <section class="form-section">
-        <h3 class="section-label">Seus dados</h3>
-        <div class="card">
-          <div class="field">
-            <label for="prof-nome">Nome completo</label>
-            <input type="text" id="prof-nome" placeholder="Ex: Maria Silva" autocomplete="name" />
-          </div>
-          <div class="field">
-            <label for="prof-sala">Turma / Sala</label>
-            <input type="text" id="prof-sala" placeholder="Ex: 9º A" />
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h3 class="section-label">Escolha a estação</h3>
-        <div id="estacoes-professor" class="estacoes-grid">
-          <!-- gerado via JS -->
-        </div>
-      </section>
-
-      <div id="acao-professor" class="acao-box" style="display:none;">
-        <div id="acao-info" class="acao-info"></div>
-        <button id="btn-retirar" class="btn btn--retirar" onclick="registrarRetirada()" style="display:none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-          Confirmar retirada
+    <nav class="sidebar__nav">
+      <div class="nav-group">
+        <span class="nav-group__label">Principal</span>
+        <button class="nav-item active" data-screen="dashboard">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1 1 16 0A8 8 0 0 1 2 10zm8-5a1 1 0 0 1 1 1v3.586l2.707 2.707a1 1 0 0 1-1.414 1.414l-3-3A1 1 0 0 1 9 10V6a1 1 0 0 1 1-1z"/></svg>
+          <span>Dashboard</span>
         </button>
-        <button id="btn-devolver" class="btn btn--devolver" onclick="registrarDevolucao()" style="display:none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          Confirmar devolução
+        <button class="nav-item" data-screen="movimentacoes">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M8 5a1 1 0 1 0 0 2h5.586l-1.293 1.293a1 1 0 0 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414l-3-3a1 1 0 1 0-1.414 1.414L13.586 5H8zM12 15a1 1 0 1 0 0-2H6.414l1.293-1.293a1 1 0 1 0-1.414-1.414l-3 3a1 1 0 0 0 0 1.414l3 3a1 1 0 0 0 1.414-1.414L6.414 15H12z"/></svg>
+          <span>Movimentações</span>
         </button>
       </div>
 
-      <div id="msg-professor" class="msg" style="display:none;"></div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       TELA DO GESTOR
-  ══════════════════════════════════════════ -->
-  <div id="screen-gestor" class="screen">
-    <div class="topbar">
-      <button class="back-btn" onclick="goTo('screen-home')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Início
-      </button>
-      <h2 class="topbar-title">Painel do Gestor</h2>
-    </div>
-
-    <div class="content">
-      <!-- métricas -->
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <span class="metric-num" id="met-total">3</span>
-          <span class="metric-label">Estações</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-num metric-num--green" id="met-livre">0</span>
-          <span class="metric-label">Livres</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-num metric-num--red" id="met-emp">0</span>
-          <span class="metric-label">Em uso</span>
-        </div>
-      </div>
-
-      <!-- tabs -->
-      <div class="tabs" role="tablist">
-        <button class="tab active" role="tab" onclick="switchTab('visao-geral', this)">Visão geral</button>
-        <button class="tab" role="tab" onclick="switchTab('historico', this)">Histórico</button>
-        <button class="tab" role="tab" onclick="switchTab('config', this)">Configurar</button>
-      </div>
-
-      <!-- TAB: visão geral -->
-      <div id="tab-visao-geral" class="tab-panel">
-        <div id="lista-gestor" class="card">
-          <!-- gerado via JS -->
-        </div>
-      </div>
-
-      <!-- TAB: histórico -->
-      <div id="tab-historico" class="tab-panel" style="display:none;">
-        <div id="lista-historico" class="card">
-          <p class="empty-msg">Nenhuma movimentação ainda.</p>
-        </div>
-        <button class="btn btn--danger" onclick="limparHistorico()" style="margin-top:12px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-          Limpar histórico
+      <div class="nav-group">
+        <span class="nav-group__label">Gestão</span>
+        <button class="nav-item" data-screen="estacoes">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zm0 6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2zm0 6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2z"/></svg>
+          <span>Estações</span>
+        </button>
+        <button class="nav-item" data-screen="notebooks">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M2 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm3.293 1.293a1 1 0 0 0-1.414 1.414L6.586 11l-2.707 2.293a1 1 0 1 0 1.414 1.414L8 12.414l2.707 2.293a1 1 0 0 0 1.414-1.414L9.414 11l2.293-2.293a1 1 0 0 0-1.414-1.414L8 9.586 5.293 7.293z"/></svg>
+          <span>Notebooks</span>
+        </button>
+        <button class="nav-item" data-screen="professores">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM16 18v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2h12z"/></svg>
+          <span>Professores</span>
+        </button>
+        <button class="nav-item" data-screen="turmas">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10.394 2.08a1 1 0 0 0-.788 0l-7 3a1 1 0 0 0 0 1.84L5.25 8.051a.999.999 0 0 1 .356-.058h8.788a.999.999 0 0 1 .356.058l2.644-1.131a1 1 0 0 0 0-1.84l-7-3z"/><path d="M9.796 12.953a1 1 0 0 0 .412 0l5-1.667A1 1 0 0 0 16 10.333V9.58l-5.667 2.429a1 1 0 0 1-.666 0L4 9.58v.753a1 1 0 0 0 .796.953l5 1.667z"/></svg>
+          <span>Turmas</span>
+        </button>
+        <button class="nav-item" data-screen="manutencoes">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 0 1-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 0 1 .947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 0 1 2.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 0 1 2.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 0 1 .947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 0 1-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 0 1-2.287-.947zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" clip-rule="evenodd"/></svg>
+          <span>Manutenções</span>
         </button>
       </div>
 
-      <!-- TAB: configurar -->
-      <div id="tab-config" class="tab-panel" style="display:none;">
-        <h3 class="section-label">Estações cadastradas</h3>
-        <div id="lista-config" class="estacoes-config">
-          <!-- gerado via JS -->
+      <div class="nav-group">
+        <span class="nav-group__label">Sistema</span>
+        <button class="nav-item" data-screen="relatorios">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-5zM8 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V7zM14 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V4z"/></svg>
+          <span>Relatórios</span>
+        </button>
+        <button class="nav-item" data-screen="configuracoes">
+          <svg class="nav-item__icon" viewBox="0 0 20 20" fill="currentColor"><path d="M5 4a1 1 0 0 0-2 0v7.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-1.268a2 2 0 0 0 0-3.464V4zM11 4a1 1 0 1 0-2 0v1.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0V8.732a2 2 0 0 0 0-3.464V4zM16 3a1 1 0 0 1 1 1v7.268a2 2 0 0 1 0 3.464V16a1 1 0 1 1-2 0v-1.268a2 2 0 0 1 0-3.464V4a1 1 0 0 1 1-1z"/></svg>
+          <span>Configurações</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user__avatar" id="sidebarAvatar">G</div>
+        <div class="sidebar-user__info">
+          <span class="sidebar-user__name" id="sidebarUserName">Gestor</span>
+          <span class="sidebar-user__role">Administrador</span>
+        </div>
+      </div>
+      <button class="btn-icon" id="btnLogout" title="Sair">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3zm11 4.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L11.586 7H8a1 1 0 1 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0V8.414z" clip-rule="evenodd"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  TOPBAR                              ║
+       ╚══════════════════════════════════════╝ -->
+  <header class="topbar" id="topbar">
+    <button class="btn-icon topbar__menu" id="btnMenuToggle">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M3 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1z" clip-rule="evenodd"/></svg>
+    </button>
+    <div class="topbar__title" id="topbarTitle">Dashboard</div>
+    <div class="topbar__actions">
+      <button class="btn-icon" id="btnTheme" title="Alternar tema">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M17.293 13.293A8 8 0 0 1 6.707 2.707a8.001 8.001 0 1 0 10.586 10.586z"/></svg>
+      </button>
+      <div class="topbar__clock" id="topbarClock"></div>
+    </div>
+  </header>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  OVERLAY MOBILE                      ║
+       ╚══════════════════════════════════════╝ -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  MAIN CONTENT                        ║
+       ╚══════════════════════════════════════╝ -->
+  <main class="main" id="main">
+
+    <!-- ══ TELA DE LOGIN ══ -->
+    <section id="screen-login" class="app-screen screen-login active-screen">
+      <div class="login-card">
+        <div class="login-card__brand">
+          <div class="brand-logo brand-logo--lg">
+            <svg width="40" height="40" viewBox="0 0 28 28" fill="none">
+              <rect x="2" y="6" width="24" height="16" rx="2" fill="var(--brand-500)"/>
+              <rect x="5" y="9" width="18" height="10" rx="1" fill="var(--brand-100)"/>
+              <rect x="8" y="22" width="12" height="2" rx="1" fill="var(--brand-400)"/>
+              <circle cx="14" cy="14" r="2.5" fill="var(--brand-500)"/>
+            </svg>
+          </div>
+          <h1 class="login-card__title">EduTrack</h1>
+          <p class="login-card__sub">Sistema de Gestão de Notebooks Escolares</p>
+        </div>
+        <form class="login-form" id="loginForm" onsubmit="return false">
+          <div class="field-group">
+            <label class="field-label" for="loginUser">Usuário</label>
+            <input class="field-input" id="loginUser" type="text" placeholder="Digite seu usuário" autocomplete="username" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="loginPass">Senha</label>
+            <div class="field-input-wrap">
+              <input class="field-input" id="loginPass" type="password" placeholder="Digite sua senha" autocomplete="current-password" />
+              <button type="button" class="field-eye" id="btnEye">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path d="M10 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" clip-rule="evenodd"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="login-hint">
+            <span>Acesso padrão: <strong>admin</strong> / <strong>admin123</strong></span>
+            <span>Professor: <strong>professor</strong> / <strong>prof123</strong></span>
+          </div>
+          <div id="loginError" class="alert alert--error" style="display:none;"></div>
+          <button class="btn btn--primary btn--full" id="btnLogin">Entrar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ══ DASHBOARD ══ -->
+    <section id="screen-dashboard" class="app-screen" data-title="Dashboard">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Dashboard</h2>
+          <p class="screen-sub" id="dashGreeting">Bem-vindo de volta!</p>
+        </div>
+        <div class="screen-header__actions">
+          <button class="btn btn--primary" onclick="openModal('modal-movimentacao')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clip-rule="evenodd"/></svg>
+            Nova Movimentação
+          </button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid" id="dashKpis"></div>
+
+      <!-- Linha 2: estações + atividade recente -->
+      <div class="dashboard-row">
+        <div class="dash-card dash-card--wide">
+          <div class="dash-card__header">
+            <h3 class="dash-card__title">Status das Estações</h3>
+            <button class="btn btn--ghost btn--sm" onclick="navigate('estacoes')">Ver todas</button>
+          </div>
+          <div class="estacoes-status-grid" id="dashEstacoesGrid"></div>
         </div>
 
-        <h3 class="section-label" style="margin-top:1.5rem;">Devolver forçado</h3>
-        <div class="card">
-          <p style="font-size:13px;color:#6B7280;margin-bottom:12px;">Use caso o professor esqueça de devolver.</p>
-          <div id="lista-devolucao-forcada">
-            <!-- gerado via JS -->
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <h3 class="dash-card__title">Atividade Recente</h3>
+          </div>
+          <div class="activity-list" id="dashActivity"></div>
+        </div>
+      </div>
+
+      <!-- Linha 3: notebooks em manutenção + alertas -->
+      <div class="dashboard-row">
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <h3 class="dash-card__title">Notebooks em Manutenção</h3>
+            <span class="badge badge--warning" id="dashManutBadge">0</span>
+          </div>
+          <div id="dashManutList" class="simple-list"></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <h3 class="dash-card__title">Alertas</h3>
+          </div>
+          <div id="dashAlertas" class="alerts-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MOVIMENTAÇÕES ══ -->
+    <section id="screen-movimentacoes" class="app-screen" data-title="Movimentações">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Movimentações</h2>
+          <p class="screen-sub">Histórico de retiradas e devoluções</p>
+        </div>
+        <div class="screen-header__actions">
+          <button class="btn btn--primary" onclick="openModal('modal-movimentacao')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clip-rule="evenodd"/></svg>
+            Registrar
+          </button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar__search">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 8a6 6 0 1 1 10.89 3.476l4.817 4.817a1 1 0 0 1-1.414 1.414l-4.816-4.816A6 6 0 0 1 2 8z" clip-rule="evenodd"/></svg>
+          <input type="text" placeholder="Buscar professor, estação…" id="searchMovimentacoes" oninput="filterTable('movimentacoes')" />
+        </div>
+        <div class="toolbar__filters">
+          <select id="filterMovTipo" onchange="filterTable('movimentacoes')">
+            <option value="">Todos os tipos</option>
+            <option value="Retirada">Retirada</option>
+            <option value="Devolução">Devolução</option>
+          </select>
+          <select id="filterMovEstacao" onchange="filterTable('movimentacoes')">
+            <option value="">Todas as estações</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="tableMovimentacoes">
+          <thead>
+            <tr>
+              <th>Data/Hora</th>
+              <th>Tipo</th>
+              <th>Professor</th>
+              <th>Turma</th>
+              <th>Estação</th>
+              <th>Obs.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyMovimentacoes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ ESTAÇÕES ══ -->
+    <section id="screen-estacoes" class="app-screen" data-title="Estações">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Estações</h2>
+          <p class="screen-sub">Carrinhos de notebooks disponíveis</p>
+        </div>
+        <div class="screen-header__actions" id="acoesEstacoes">
+          <!-- botões injetados por role -->
+        </div>
+      </div>
+      <div id="estacoesCards" class="estacoes-cards-grid"></div>
+    </section>
+
+    <!-- ══ NOTEBOOKS ══ -->
+    <section id="screen-notebooks" class="app-screen" data-title="Notebooks">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Notebooks</h2>
+          <p class="screen-sub">Inventário de equipamentos</p>
+        </div>
+        <div class="screen-header__actions">
+          <button class="btn btn--primary" id="btnAddNotebook" onclick="openModal('modal-notebook')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clip-rule="evenodd"/></svg>
+            Adicionar
+          </button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar__search">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 8a6 6 0 1 1 10.89 3.476l4.817 4.817a1 1 0 0 1-1.414 1.414l-4.816-4.816A6 6 0 0 1 2 8z" clip-rule="evenodd"/></svg>
+          <input type="text" placeholder="Buscar por patrimônio, modelo…" id="searchNotebooks" oninput="filterTable('notebooks')" />
+        </div>
+        <div class="toolbar__filters">
+          <select id="filterNbStatus" onchange="filterTable('notebooks')">
+            <option value="">Todos os status</option>
+            <option value="Ativo">Ativo</option>
+            <option value="Manutenção">Em manutenção</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+          <select id="filterNbEstacao" onchange="filterTable('notebooks')">
+            <option value="">Todas as estações</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="tableNotebooks">
+          <thead>
+            <tr>
+              <th>Patrimônio</th>
+              <th>Modelo</th>
+              <th>Estação</th>
+              <th>Status</th>
+              <th>Condição</th>
+              <th>Última mov.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyNotebooks"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ PROFESSORES ══ -->
+    <section id="screen-professores" class="app-screen" data-title="Professores">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Professores</h2>
+          <p class="screen-sub">Cadastro de usuários do sistema</p>
+        </div>
+        <div class="screen-header__actions">
+          <button class="btn btn--primary" onclick="openModal('modal-professor')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clip-rule="evenodd"/></svg>
+            Cadastrar
+          </button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar__search">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 8a6 6 0 1 1 10.89 3.476l4.817 4.817a1 1 0 0 1-1.414 1.414l-4.816-4.816A6 6 0 0 1 2 8z" clip-rule="evenodd"/></svg>
+          <input type="text" placeholder="Buscar por nome ou disciplina…" id="searchProfessores" oninput="filterTable('professores')" />
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="tableProfessores">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Disciplina</th>
+              <th>Contato</th>
+              <th>Movimentações</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyProfessores"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ TURMAS ══ -->
+    <section id="screen-turmas" class="app-screen" data-title="Turmas">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Turmas</h2>
+          <p class="screen-sub">Gerenciamento de turmas e períodos</p>
+        </div>
+        <div class="screen-header__actions">
+          <button class="btn btn--primary" onclick="openModal('modal-turma')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clip-rule="evenodd"/></svg>
+            Nova Turma
+          </button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="tableTurmas">
+          <thead>
+            <tr>
+              <th>Turma</th>
+              <th>Ano</th>
+              <th>Período</th>
+              <th>Qtd. Alunos</th>
+              <th>Usos este mês</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyTurmas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ MANUTENÇÕES ══ -->
+    <section id="screen-manutencoes" class="app-screen" data-title="Manutenções">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Manutenções</h2>
+          <p class="screen-sub">Registro de chamados e reparos</p>
+        </div>
+        <div class="screen-header__actions">
+          <button class="btn btn--primary" onclick="openModal('modal-manutencao')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clip-rule="evenodd"/></svg>
+            Abrir Chamado
+          </button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar__search">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16"><path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 8a6 6 0 1 1 10.89 3.476l4.817 4.817a1 1 0 0 1-1.414 1.414l-4.816-4.816A6 6 0 0 1 2 8z" clip-rule="evenodd"/></svg>
+          <input type="text" placeholder="Buscar por notebook ou descrição…" id="searchManutencoes" oninput="filterTable('manutencoes')" />
+        </div>
+        <div class="toolbar__filters">
+          <select id="filterManutStatus" onchange="filterTable('manutencoes')">
+            <option value="">Todos</option>
+            <option value="Aberto">Aberto</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Concluído">Concluído</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="tableManutencoes">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Notebook</th>
+              <th>Tipo</th>
+              <th>Descrição</th>
+              <th>Status</th>
+              <th>Custo</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyManutencoes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ RELATÓRIOS ══ -->
+    <section id="screen-relatorios" class="app-screen" data-title="Relatórios">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Relatórios</h2>
+          <p class="screen-sub">Visão consolidada do sistema</p>
+        </div>
+      </div>
+      <div class="relatorios-grid" id="relatoriosGrid"></div>
+    </section>
+
+    <!-- ══ CONFIGURAÇÕES ══ -->
+    <section id="screen-configuracoes" class="app-screen" data-title="Configurações">
+      <div class="screen-header">
+        <div>
+          <h2 class="screen-title">Configurações</h2>
+          <p class="screen-sub">Preferências do sistema</p>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div class="config-card">
+          <h3 class="config-card__title">Escola</h3>
+          <div class="field-group">
+            <label class="field-label">Nome da instituição</label>
+            <input class="field-input" id="cfgEscola" type="text" placeholder="Ex: E.E. Professor João Silva" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Ano letivo</label>
+            <input class="field-input" id="cfgAnoLetivo" type="text" placeholder="Ex: 2025" />
+          </div>
+          <button class="btn btn--primary" onclick="salvarConfig()">Salvar configurações</button>
+        </div>
+        <div class="config-card">
+          <h3 class="config-card__title">Dados do sistema</h3>
+          <p class="config-info">Exporte ou redefina todos os dados armazenados no LocalStorage.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+            <button class="btn btn--secondary" onclick="exportarDados()">Exportar JSON</button>
+            <button class="btn btn--danger" onclick="resetarDados()">Resetar dados</button>
           </div>
         </div>
-        <div id="msg-config" class="msg" style="display:none;"></div>
+        <div class="config-card">
+          <h3 class="config-card__title">Aparência</h3>
+          <div class="field-group">
+            <label class="field-label">Tema</label>
+            <div class="toggle-group">
+              <button class="toggle-btn active" id="themeLight" onclick="setTheme('light')">Claro</button>
+              <button class="toggle-btn" id="themeDark" onclick="setTheme('dark')">Escuro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ╔══════════════════════════════════════╗
+       ║  MODAIS                              ║
+       ╚══════════════════════════════════════╝ -->
+
+  <!-- Modal Movimentação -->
+  <div class="modal-overlay" id="modal-movimentacao">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="titleMovimentacao">Registrar Movimentação</h3>
+        <button class="btn-icon" onclick="closeModal('modal-movimentacao')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="movId" />
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Tipo *</label>
+            <select class="field-input" id="movTipo">
+              <option value="Retirada">Retirada</option>
+              <option value="Devolução">Devolução</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Estação *</label>
+            <select class="field-input" id="movEstacao"></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Professor *</label>
+            <select class="field-input" id="movProfessor"></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Turma *</label>
+            <select class="field-input" id="movTurma"></select>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Observação</label>
+          <textarea class="field-input field-textarea" id="movObs" placeholder="Alguma observação sobre esta movimentação…" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-movimentacao')">Cancelar</button>
+        <button class="btn btn--primary" onclick="salvarMovimentacao()">Registrar</button>
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- Modal Estação -->
+  <div class="modal-overlay" id="modal-estacao">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="titleEstacao">Nova Estação</h3>
+        <button class="btn-icon" onclick="closeModal('modal-estacao')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="estacaoId" />
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Nome / Letra *</label>
+            <input class="field-input" id="estacaoNome" type="text" placeholder="Ex: Estação A" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Capacidade (notebooks) *</label>
+            <input class="field-input" id="estacaoCapacidade" type="number" min="1" max="99" placeholder="Ex: 15" />
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Localização</label>
+          <input class="field-input" id="estacaoLocal" type="text" placeholder="Ex: Bloco B, corredor 2" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Descrição</label>
+          <textarea class="field-input field-textarea" id="estacaoDesc" rows="2" placeholder="Informações adicionais…"></textarea>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-estacao')">Cancelar</button>
+        <button class="btn btn--primary" onclick="salvarEstacao()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Notebook -->
+  <div class="modal-overlay" id="modal-notebook">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="titleNotebook">Novo Notebook</h3>
+        <button class="btn-icon" onclick="closeModal('modal-notebook')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="notebookId" />
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Nº Patrimônio *</label>
+            <input class="field-input" id="nbPatrimonio" type="text" placeholder="Ex: NB-001" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Estação *</label>
+            <select class="field-input" id="nbEstacao"></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Modelo</label>
+            <input class="field-input" id="nbModelo" type="text" placeholder="Ex: Dell Latitude 3420" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Ano de aquisição</label>
+            <input class="field-input" id="nbAno" type="number" placeholder="Ex: 2023" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Status</label>
+            <select class="field-input" id="nbStatus">
+              <option value="Ativo">Ativo</option>
+              <option value="Manutenção">Em manutenção</option>
+              <option value="Inativo">Inativo</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Condição</label>
+            <select class="field-input" id="nbCondicao">
+              <option value="Ótimo">Ótimo</option>
+              <option value="Bom">Bom</option>
+              <option value="Regular">Regular</option>
+              <option value="Ruim">Ruim</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Observações</label>
+          <textarea class="field-input field-textarea" id="nbObs" rows="2" placeholder="Número de série, configurações, etc."></textarea>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-notebook')">Cancelar</button>
+        <button class="btn btn--primary" onclick="salvarNotebook()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Professor -->
+  <div class="modal-overlay" id="modal-professor">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="titleProfessor">Novo Professor</h3>
+        <button class="btn-icon" onclick="closeModal('modal-professor')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="professorId" />
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Nome completo *</label>
+            <input class="field-input" id="profNome" type="text" placeholder="Ex: Maria Silva" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Disciplina</label>
+            <input class="field-input" id="profDisciplina" type="text" placeholder="Ex: Matemática" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">E-mail</label>
+            <input class="field-input" id="profEmail" type="email" placeholder="professor@escola.edu.br" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Telefone</label>
+            <input class="field-input" id="profTelefone" type="tel" placeholder="(11) 99999-9999" />
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Status</label>
+          <select class="field-input" id="profStatus">
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-professor')">Cancelar</button>
+        <button class="btn btn--primary" onclick="salvarProfessor()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Turma -->
+  <div class="modal-overlay" id="modal-turma">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="titleTurma">Nova Turma</h3>
+        <button class="btn-icon" onclick="closeModal('modal-turma')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="turmaId" />
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Nome da turma *</label>
+            <input class="field-input" id="turmaNome" type="text" placeholder="Ex: 9º A" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Ano *</label>
+            <input class="field-input" id="turmaAno" type="text" placeholder="Ex: 9º ano" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Período</label>
+            <select class="field-input" id="turmaPeriodo">
+              <option value="Manhã">Manhã</option>
+              <option value="Tarde">Tarde</option>
+              <option value="Noite">Noite</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Qtd. alunos</label>
+            <input class="field-input" id="turmaAlunos" type="number" min="1" placeholder="Ex: 35" />
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-turma')">Cancelar</button>
+        <button class="btn btn--primary" onclick="salvarTurma()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Manutenção -->
+  <div class="modal-overlay" id="modal-manutencao">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="titleManutencao">Abrir Chamado</h3>
+        <button class="btn-icon" onclick="closeModal('modal-manutencao')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="manutId" />
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Notebook *</label>
+            <select class="field-input" id="manutNotebook"></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Tipo</label>
+            <select class="field-input" id="manutTipo">
+              <option value="Preventiva">Preventiva</option>
+              <option value="Corretiva">Corretiva</option>
+              <option value="Atualização">Atualização</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Descrição do problema *</label>
+          <textarea class="field-input field-textarea" id="manutDesc" rows="3" placeholder="Descreva o problema ou serviço…"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label">Status</label>
+            <select class="field-input" id="manutStatus">
+              <option value="Aberto">Aberto</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Concluído">Concluído</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Custo estimado (R$)</label>
+            <input class="field-input" id="manutCusto" type="number" min="0" step="0.01" placeholder="0,00" />
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-manutencao')">Cancelar</button>
+        <button class="btn btn--primary" onclick="salvarManutencao()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div class="modal-overlay" id="modal-confirm">
+    <div class="modal modal--sm">
+      <div class="modal__header">
+        <h3 class="modal__title">Confirmar exclusão</h3>
+      </div>
+      <div class="modal__body">
+        <p id="confirmMsg">Tem certeza que deseja excluir este item? Esta ação não pode ser desfeita.</p>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" onclick="closeModal('modal-confirm')">Cancelar</button>
+        <button class="btn btn--danger" id="btnConfirmDelete">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts modulares -->
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/estacoes.js"></script>
+  <script src="js/notebooks.js"></script>
+  <script src="js/professores.js"></script>
+  <script src="js/turmas.js"></script>
+  <script src="js/movimentacoes.js"></script>
+  <script src="js/manutencoes.js"></script>
+  <script src="js/relatorios.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
